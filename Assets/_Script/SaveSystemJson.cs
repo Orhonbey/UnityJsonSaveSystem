@@ -23,14 +23,16 @@ public class SaveSystemJson : MonoBehaviour
     [SerializeField]
     private GameObject nameSavePanel;
 
-    public MainClass mainClass = new MainClass();
+    public MainClass mainClass; //videoda hata buradaydı referans atamsında
+
 
     #region start Fonksiyonu
     void Start()
     {
-        StringToMainClass();
-        if (PlayerPrefs.HasKey("mainClassJson") && mainClass.MainClassName !="")
+        
+        if (PlayerPrefs.HasKey("mainClassJson"))
         {
+            StringToMainClass();
             nameSavePanel.SetActive(false);
         }
     }
@@ -70,7 +72,7 @@ public class SaveSystemJson : MonoBehaviour
     #region Class To String Class Stringe Çeviriyoruz
     private string MainClassToString(MainClass mc) // Class Gelen değeri Player Pref Haline çeviriyoruz
     {
-        string toString = JsonUtility.ToJson(mc);
+        string toString = JsonUtility.ToJson(mc);// String Değeri Json Formatında Stringe Çeviren Fonksiyon
         return toString;
     }
     #endregion
